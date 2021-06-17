@@ -56,7 +56,9 @@ class RTC_EXPORT CopyOnWriteBuffer {
   CopyOnWriteBuffer(const T* data, size_t size, size_t capacity)
       : CopyOnWriteBuffer(size, capacity) {
     if (buffer_) {
+      //printf("memcpy");
       std::memcpy(buffer_->data(), data, size);
+      //printf("memcpyafter");
       offset_ = 0;
       size_ = size;
     }

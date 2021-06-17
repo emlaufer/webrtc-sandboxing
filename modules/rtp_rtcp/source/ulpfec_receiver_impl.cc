@@ -78,6 +78,7 @@ FecPacketCounter UlpfecReceiverImpl::GetPacketCounter() const {
 bool UlpfecReceiverImpl::AddReceivedRedPacket(
     const RtpPacketReceived& rtp_packet,
     uint8_t ulpfec_payload_type) {
+  printf("GOT A ULP PACKET\n");
   RTC_DCHECK_RUN_ON(&sequence_checker_);
   // TODO(bugs.webrtc.org/11993): We get here via Call::DeliverRtp, so should be
   // moved to the network thread.

@@ -240,6 +240,13 @@ rtc_library("rtp_rtcp") {
     "source/video_rtp_depacketizer_vp8.h",
     "source/video_rtp_depacketizer_vp9.cc",
     "source/video_rtp_depacketizer_vp9.h",
+#evan
+    "source/fec_rlbox_adapter.h",
+    "source/fec_rlbox_adapter.cc",
+    "source/fec_rlbox_wrapper.h",
+    "source/fec_rlbox_wrapper.cc",
+    "source/forward_error_correction_impl.h",
+    "source/forward_error_correction_impl.cc",
   ]
 
   if (rtc_enable_bwe_test_logging) {

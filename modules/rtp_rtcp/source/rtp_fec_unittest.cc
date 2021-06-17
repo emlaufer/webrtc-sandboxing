@@ -176,11 +176,9 @@ class FlexfecForwardErrorCorrection : public ForwardErrorCorrection {
   static const uint32_t kFecSsrc = kFlexfecSsrc;
 
   FlexfecForwardErrorCorrection()
-      : ForwardErrorCorrection(
-            std::unique_ptr<FecHeaderReader>(new FlexfecHeaderReader()),
-            std::unique_ptr<FecHeaderWriter>(new FlexfecHeaderWriter()),
+    : ForwardErrorCorrection(
             kFecSsrc,
-            kMediaSsrc) {}
+            kMediaSsrc, false) {}
 
   // For FlexFEC we let the FEC packet sequence numbers be independent of
   // the media packet sequence numbers.
@@ -196,10 +194,8 @@ class UlpfecForwardErrorCorrection : public ForwardErrorCorrection {
 
   UlpfecForwardErrorCorrection()
       : ForwardErrorCorrection(
-            std::unique_ptr<FecHeaderReader>(new UlpfecHeaderReader()),
-            std::unique_ptr<FecHeaderWriter>(new UlpfecHeaderWriter()),
             kFecSsrc,
-            kMediaSsrc) {}
+            kMediaSsrc, true) {}
 
   // For ULPFEC we assume that the FEC packets are subsequent to the media
   // packets in terms of sequence number.

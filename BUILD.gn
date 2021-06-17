@@ -118,6 +118,9 @@ config("common_inherited_config") {
   cflags = []
   ldflags = []
 
+  # evan
+  defines += ["__cpp_exceptions=0"]
+
   if (rtc_enable_symbol_export || is_component_build) {
     defines = [ "WEBRTC_ENABLE_SYMBOL_EXPORT" ]
   }
@@ -239,8 +242,8 @@ config("rtc_prod_config") {
   # Ideally, WebRTC production code (but not test code) should have these flags.
   if (is_clang) {
     cflags = [
-      "-Wexit-time-destructors",
-      "-Wglobal-constructors",
+      #"-Wexit-time-destructors",
+      #"-Wglobal-constructors",
     ]
   }
 }
@@ -433,6 +436,12 @@ config("common_config") {
   }
 }
 
+# EVAN
+config("compiler") {
+  cflags_cc = []
+  cflags_cc += ["-std=c++1z"]
+}
+
 config("common_objc") {
   frameworks = [ "Foundation.framework" ]
 
@@ -478,6 +487,7 @@ if (!build_with_chromium) {
       "pc:rtc_pc",
       "pc:rtc_pc_base",
       "rtc_base",
+      "rlbox",
       "sdk",
       "video",
     ]
